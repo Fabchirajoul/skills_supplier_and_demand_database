@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/CSS/attacments.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+</head>
+
+<body>
+    <div class="dashboard-container">
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            
+
+            <div class="graduate-icon"><img src="/static/images/logo_simplebbbbbbbbbbbbbb.png" alt=" " style=" width: 130px;">
+       
+       
+       
+       
+       
+        </div><br><br>
+        <ul>
+            <li><a href="{{ url_for('dashboardinformation') }}" class="nav-item"><i class="fa fa-home"></i> Home</a></li>
+
+            <li><a href="{{ url_for('dashboardPersonalInformation') }}" class="nav-item"><i class="fa fa-user"></i> Personal Info</a></li>
+
+            
+            <li><a href="{{ url_for('dashboardEducation') }}" class="nav-item"><i class="fa fa-graduation-cap"></i> Education</a></li>
+            <li><a href="{{ url_for('dashboardWorkHistory') }}" class="nav-item"><i class="fa fa-briefcase"></i> Work History</a></li>
+            <li><a href="{{ url_for('dashboardAttachment') }}" class="nav-item"><i class="fa fa-paperclip"></i> Attachments</a></li>
+            <li><a href="{{ url_for('dashboardGenerateCV') }}" class="nav-item"><i class="fa fa-file"></i> Generate CV</a></li>
+            <li>🔔 Notifications</li>
+            <li>🛠️ Help & Support</li> <br><br><br><br>
+            <button class="fixy">⚙️ Settings</button>
+            <button class="fix">🚪 Log Out</button><br>
+            <!-- <li><i>🆘</i> Help Services</li> -->
+            <!-- <li><i>🎓</i> Student Portal</li>
+            <li><i>📚</i> Courses</li>
+            <li><i>📝</i> Assignments</li> -->
+        </ul>
+      
+
+
+        <img src="/static/images/rb_2149331949.png" alt="" width="199px">
+    </div>
+
+        <!-- Content -->
+        <div class="content">
+
+            <!-- Top Bar -->
+            <div class="topbar">
+                <input type="search" placeholder="">
+                <!-- <div class="icon">🔍</div> -->
+
+
+            </div>
+
+            <!-- Welcome Box -->
+            <!-- <img src="./images/rb_2148892786.png" alt="" width="90px" height="100px">
+            <div class="welcome-box">
+                <br>Welcome, Natasia Mahure
+                <br>
+                <div class="date">September 15, 2024</div>
+            </div> -->
+            <div class="welcome-container">
+                <div class="image-container">
+
+                    <img src="/static/images/rb_2148892786.png" alt="Profile Picture" width="200px" height="150px">
+
+
+
+                 
+                </div>
+                
+            </div>
+
+            <div class="form-container">
+                <h1>Attachments Form</h1>
+                <form id="attachments-form" action="/Attachment" method="post" enctype="multipart/form-data">
+                    <div id="attachment-entries">
+                        <div class="attachment-entry">
+                            <h3>Upload Document</h3>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="document-type">Document Type:</label>
+                                    <select id="document-type" name="document-type[]" required>
+                                        <option value="" disabled selected>Select Document Type</option>
+                                        <option value="highschool-certificate">High School Certificate</option>
+                                        <option value="degree">Degree</option>
+                                        <option value="id-copy">ID Copy</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="document-upload">Upload File:</label>
+                                    <input type="file" id="document-upload" name="document-upload[]" required>
+                                </div>
+                            </div>
+                            <button type="button" class="delete-entry">Delete</button>
+                        </div>
+                    </div>
+            
+                    <div class="button-row">
+                        <button type="button" id="add-attachment">Add Document</button>
+                        <button type="submit">Save</button>
+                    </div>
+                </form>
+            </div>
+            
+            <script>
+                document.getElementById('add-attachment').addEventListener('click', function () {
+                    const newEntry = document.createElement('div');
+                    newEntry.classList.add('attachment-entry');
+                    newEntry.innerHTML = `
+                        <h3>Additional Document</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="document-type">Document Type:</label>
+                                <select name="document-type[]" required>
+                                    <option value="" disabled selected>Select Document Type</option>
+                                    <option value="highschool-certificate">High School Certificate</option>
+                                    <option value="degree">Degree</option>
+                                    <option value="id-copy">ID Copy</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="document-upload">Upload File:</label>
+                                <input type="file" name="document-upload[]" required>
+                            </div>
+                        </div>
+                        <button type="button" class="delete-entry">Delete</button>
+                    `;
+                    document.getElementById('attachment-entries').appendChild(newEntry);
+                });
+            
+                document.getElementById('attachments-form').addEventListener('click', function (e) {
+                    if (e.target.classList.contains('delete-entry')) {
+                        e.target.parentElement.remove();
+                    }
+                });
+            </script>
+            
+            
+
+
+
+</body>
+
+</html>

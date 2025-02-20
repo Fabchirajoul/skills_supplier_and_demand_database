@@ -1,0 +1,135 @@
+.form-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 160vh;
+    color: #360459;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+    text-align: center;
+    color: #4c035a;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    width: 48%;
+}
+
+label {
+    margin-bottom: 5px;
+    color: #535050;
+    font-weight: bold;
+}
+
+input, select, button {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #d1c4e9;
+    font-size: 14px;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #4c035a;
+}
+
+button {
+    background-color: #4c035a;
+    color: #fff;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    padding: 10px;
+}
+
+button:hover {
+    background-color: #360459;
+}
+
+.delete-entry {
+    background-color: #d32f2f;
+    margin-top: 10px;
+}
+
+.delete-entry:hover {
+    background-color: #b71c1c;
+}
+
+.button-row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.button-row button {
+    width: 48%;
+}
+
+.onboarding-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.onboarding-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 50%;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.onboarding-content h2 {
+    color: #4c035a;
+    margin-bottom: 10px;
+}
+
+.onboarding-content p {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.onboarding-content ol {
+    text-align: left;
+    margin: 0 auto 20px;
+    padding: 0 20px;
+    color: #333;
+}
+
+.onboarding-content button {
+    background-color: #4c035a;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.onboarding-content button:hover {
+    background-color: #360459;
+}

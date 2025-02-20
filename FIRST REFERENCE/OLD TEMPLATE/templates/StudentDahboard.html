@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learner | SSDD</title>
+    <link rel="stylesheet" href="/static/CSS/dasborad.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .dashboard-container {
+            display: flex;
+            flex-wrap: wrap;
+            height: 100vh;
+        }
+
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            background: linear-gradient(to bottom, rgb(195, 193, 193), white, rgb(91, 60, 131));
+            padding: 20px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background 0.3s;
+        }
+
+        .sidebar ul li:hover {
+            background-color: #8f6620;
+            color: white;
+        }
+
+        .content {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .welcome-box {
+            background: linear-gradient(to right, white, rgb(215, 213, 213), rgb(91, 60, 131));
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 1200px;
+            margin-bottom: 30px; /* Added space below welcome-box */
+        }
+
+        .grouped-card-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            height: auto;
+            max-width: 1200px;
+            margin-top: 30px; /* Added space above grouped-card-container */
+        }
+
+        .card-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+
+        .card {
+            background: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            border-radius: 12px;
+            text-align: center;
+            padding: 30px;
+            width: 280px;
+            height:300px;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card img {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 15px;
+        }
+
+        .card h1 {
+            font-size: 18px;
+            color: #4b0082;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .card button {
+            background: #4a90e2;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .card button:hover {
+            background: #357abd;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-container {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                text-align: center;
+            }
+            .sidebar ul {
+                display: flex;
+                justify-content: space-around;
+                flex-wrap: wrap;
+            }
+            .content {
+                padding: 10px;
+            }
+            .grouped-card-container {
+                width: 90%;
+                max-width: 1200px;
+            }
+            .card-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <div class="sidebar">
+            <div class="graduate-icon">
+                <img src="/static/images/logo_simplebbbbbbbbbbbbbb.png" alt=" " style="width: 130px;">
+            </div>
+            <br>
+            <ul>
+                <li><a href="#" class="nav-item"><i class="fa fa-home"></i> Home</a></li>
+                <li><a href="#" class="nav-item"><i class="fa fa-user"></i> Personal Info</a></li>
+                <li><a href="#" class="nav-item"><i class="fa fa-graduation-cap"></i> Education</a></li>
+                <li><a href="#" class="nav-item"><i class="fa fa-briefcase"></i> Work History</a></li>
+                <li><a href="#" class="nav-item"><i class="fa fa-paperclip"></i> Attachments</a></li>
+                <li><a href="#" class="nav-item"><i class="fa fa-file"></i> Generate CV</a></li>
+                <li>🔔 Notifications</li>
+                <li>🛠️ Help & Support</li>
+             
+                <button class="fix">🚪 Log Out</button>
+
+
+            </ul>
+
+            <img src="/static/images/rb_2149331949.png" alt="" width="199px">
+            
+        </div>
+        <div class="content">
+            
+            <div class="welcome-box">
+            
+                
+
+                  
+            </div>
+            <div class="grouped-card-container">
+                <div class="card-container">
+                    <div class="card">
+                        <img src="/static/images/chat 2.png" alt="Admin Feedback">
+                        <h1>Admin Feedback</h1>
+                        <button>Learn More</button>
+                    </div>
+                    <div class="card">
+                        <img src="/static/images/User.png" alt="Profile">
+                        <h1>Profile</h1>
+                        <button>Learn More</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+

@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>REGISTRATION | SSDD</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  
+  <script src="/static/js/addworkhistory.js"></script>
+  <style>
+    html, body {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    .content {
+        flex: 1 0 auto;
+    }
+    .footer {
+        flex-shrink: 0;
+        width: 100%;
+        margin-top: auto;
+    }
+    .custom-close {
+      filter: invert(19%) sepia(91%) saturate(7482%) hue-rotate(357deg) brightness(100%) contrast(105%);
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-primary-subtle px-3 py-5 mb-2">
+    <img src="/static/images/chietaLogo.png" alt="Chieta Logo">
+    <div class="collapse navbar-collapse" id="navbarContent"></div>
+  </nav>
+
+  <div class="container my-4">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="student-tab" data-bs-toggle="tab" data-bs-target="#student" type="button" role="tab">STUDENT</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="company-tab" data-bs-toggle="tab" data-bs-target="#company" type="button" role="tab">COMPANY</button>
+      </li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content" id="myTabContent">
+     
+      <div class="tab-pane fade show active" id="student" role="tabpanel">
+        <div class="container mt-5 d-flex justify-content-center align-items-center content">
+          <div class="row w-75">
+              <div class="col-md-6">
+               <div>
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                  {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                      {{ message }}
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                  {% endfor %}
+                {% endif %}
+              {% endwith %}
+              
+
+
+               </div>
+                  <h3>STUDENT REGISTRATION</h3>
+                  <form id="studentForm" method="POST" action="/register">
+                     
+                    <div class="mb-3">
+                          <input type="hidden" name="AccountType" value="Learner" class="form-control" placeholder="Username" required>
+                      </div>
+
+                      <div class="mb-3">
+                        <input type="text" name="username" class="form-control" placeholder="Username" required>
+                    </div>
+                      <div class="mb-3">
+                        <input type="text" name="email" class="form-control" placeholder="Email" required>
+                      </div>
+                      <div class="mb-3">
+                        <input type="password" name="userpassword" class="form-control" placeholder="Password" required>
+                      </div>
+                      <div class="mb-3">
+                        <input type="password" name="confirmUserPassword" class="form-control" placeholder="Confirm Password" required>
+                      </div>
+                      <button type="button" class="btn btn-primary w-100" onclick="validateForm('studentForm', 'termsModal')">REGISTER</button>
+
+                  
+                  <p class="mt-3">Already have an account? <a href="{{ url_for('index') }}" class="text-danger">LOGIN</a></p>
+              </div>
+              <div class="col-md-6 d-flex justify-content-center">
+                <img src="/static/images/loginimagees11.PNG" class="img-fluid" alt="People using laptop">
+              </div>
+          </div>
+        </div>
+      </div>
+
+
+       <!-- Terms and Conditions Modal -->
+  <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="termsModalLabel">TERMS AND CONDITIONS OF USE OF THE CHIETA’S SUPPLY SIDE DATABASE</h5>
+          <button type="button" class="btn-close custom-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+        </div>
+        <div class="modal-body">
+          <ul>
+
+            <li><b>Introduction: </b> These terms and conditions describe the conditions under which students and graduates (‘Learners’) information will be captured on CHIETA databases, owned and operated by the CHIETA.</li> <br>
+
+              <li><b>Content:</b> The databases have been created by the CHIETA. The databases and its contents are owned by the CHIETA. The CHIETA reserves the right to share the databases with government and non-government institutions, companies (not limited to CHIETA companies), agencies and individuals, and other organisations and institutions mandated by legislation.</li> <br>
+              <li><b>Warranty:</b> The contents of the databases have been prepared by the CHIETA on the basis of information received from various stakeholders, training providers, and from Learners. While reasonable efforts have been made to ensure that the information is correct, the information is not guaranteed to be correct or up-to-date. The CHIETA reserves the right to change the content of the databases as needed, or when it is appropriate to do so, to add to, amend or correct any information on the databases to ensure credibility of information.</li> <br>
+              <li><b>Collection of Learner Data: </b> The CHIETA may collect general or personally identifiable information regarding Learners, including without limitation, the name of the domain of each Learner, the IP protocol number of each Learner, the date and time the information was captured on to the database, and generally any other information to establish the details of the Learner, usage patterns and other statistics. Learners acknowledge and agree that the CHIETA may use such information in any manner reasonably related to CHIETA’s databases.</li><br>
+              <li><b>POPI Act:</b> In terms of the Protection of Personal Information Act 4 of 2013 the CHIETA may only publish the personal information of data subjects (Learners) with their consent and for a limited purpose. The purpose of the databases are to systematically record and store learner information, report on learners as per SETAs legislative requirements, and contribute to skills development initiatives.</li><br>
+              <li><b>Learner-Provided Information: </b>Learners agree that any information provided to the CHIETA will be accurate and complete.</li><br>
+              <li><b>Learner Assumption of Risk, Release and Indemnification:</b> Learners assume all risks related to their inclusion in CHIETA databases. Each Learner indemnifies and holds the CHIETA harmless from and against any losses, damages, liabilities or costs of any nature related in any manner to their inclusion in the databases by such Learner. The CHIETA will not be liable to Learners for any claims for damages, whether direct, indirect, special, consequential, incidental or punitive, based on any cause of action whatsoever relating to their inclusion in the databases.</li><br>
+              <li>Amendment:</b> These terms and conditions may be amended at any time by the CHIETA in its sole discretion. These terms and conditions constitute the entire agreement between the CHIETA and the Learner relating to their inclusion in CHIETA databases.</li><br>
+              <li><b>Acceptance of terms and conditions:</b> Your inclusion in CHIETA databases indicates your affirmative agreement to these terms and conditions and that you consent to the CHIETA utilizing your information for the purpose prescribed above. If you do not agree with these terms and conditions you are not entitled to be included in CHIETA databases. You have the right to withdraw your consent, and to access, correct and update your information.</li>
+            <ul>
+
+
+
+        </div>
+        <div class="modal-footer">
+          
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="submitForm()">ACCEPT</button>
+
+
+
+
+        </div>
+
+      </form>
+      </div>
+    </div>
+  </div>
+
+      <div class="tab-pane fade" id="company" role="tabpanel">
+        <div class="container mt-5 d-flex justify-content-center align-items-center content">
+          <div class="row w-75">
+              <div class="col-md-6">
+                  <h3>COMPANY REGISTRATION</h3>
+                  <form id="companyForm" method="POST" action="/register">
+                      
+                    <div class="mb-3">
+                      <input type="hidden" name="AccountType" value="Company" class="form-control" placeholder="Username">
+                       </div>
+                    
+                    <div class="mb-3">
+                          <input type="text" name="username" class="form-control" placeholder="Username" required>
+                      </div>
+                      <div class="mb-3">
+                        <input type="text" name="email" class="form-control" placeholder="Email" required>
+                      </div>
+                      <div class="mb-3">
+                        <input type="password" name="userpassword" class="form-control" placeholder="Password" required>
+                      </div>
+
+
+                      <div class="mb-3">
+                        <input type="password" name="confirmUserPassword" class="form-control" placeholder="Comfirm Password" required>
+                      </div>
+
+
+                      <div class="mb-3">
+                        <input type="text" name="company_name" class="form-control" placeholder="Company Name" required>
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" name="sdl_number" class="form-control" placeholder="SDL Number will appear here" required readonly>
+                    </div>
+                    
+                    
+
+
+
+
+                      <button type="button" class="btn btn-primary w-100" onclick="validateForm('companyForm', 'termsModalCompany')">REGISTER</button>
+
+
+                 
+                  <p class="mt-3">Already have an account? <a href="{{ url_for('index') }}" class="text-danger">LOGIN</a></p>
+              </div>
+              <div class="col-md-6 d-flex justify-content-center">
+                <img src="/static/images/loginimagees11.PNG" class="img-fluid" alt="People using laptop">
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+         <!-- Terms and Conditions company -->
+         <div class="modal fade" id="termsModalCompany" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="termsModalLabel">TERMS AND CONDITIONS OF USE OF THE CHIETA’S SUPPLY SIDE DATABASE</h5>
+                <button type="button" class="btn-close custom-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      
+              </div>
+              <div class="modal-body">
+                <ul>
+      
+                  <li>
+                    <p>
+                        <strong>Introduction.</strong> These terms and conditions describe the
+                        conditions under
+                        which users (‘Users’) of the database, owned and operated by the CHIETA, may use
+                        the
+                        database.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <strong>Content.</strong> The database has been created by the CHIETA. The
+                        database and its contents are owned by the CHIETA. Reproduction, distribution,
+                        republication or retransmission of any database material is prohibited unless
+                        the prior written permission of the CHIETA has been obtained.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <strong>Warranty.</strong> The content of the database has been prepared by the
+                        CHIETA on the basis of information received from various tertiary institutions
+                        and from students and graduates. While reasonable efforts have been made to
+                        ensure that the information is correct, the information is not guaranteed to be
+                        correct or up-to-date. The CHIETA reserves the right to change the content of
+                        the database as needed, or when it is appropriate to do so, to add to, amend or
+                        correct any information on the database.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <strong>Collection of User Data.</strong> The CHIETA may collect general or
+                        personally identifiable information regarding usage and Users of the database,
+                        including without limitation, the name of the domain of each User, the IP
+                        protocol number of each User, the date and time the database was accessed, and
+                        generally any other information to establish the details of the User, usage
+                        patterns and other statistics. Users acknowledge and agree that the CHIETA may
+                        use such information in any manner reasonably related to the Supply Side
+                        Database Project.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <strong>POPI Act.</strong> In terms of the Protection of Personal Information
+                        Act 4 of
+                        2013 the CHIETA may only publish the personal information of data subjects (such
+                        as
+                        students and graduates) with their consent and for the limited purpose of the
+                        Supply
+                        Side Database Project. That purpose is to create a platform for students and
+                        graduates
+                        to seek employment opportunities in the Chemical Sector through the Project.
+                        Users
+                        acknowledge and agree that they will use the personal information of students
+                        and
+                        graduates solely for the purpose of considering potential candidates for jobs,
+                        for
+                        interviews, employment opportunities and recruitment purposes, and for no other
+                        purpose.
+                        Users also undertake not to reproduce, distribute, republish or retransmit any
+                        personal
+                        information of the students or graduates for any purpose whatsoever without
+                        their
+                        consent.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <strong>User reports.</strong> Users agree and undertake that they will, within
+                        one
+                        month of interacting with the database, submit reports to the CHIETA
+                        electronically,
+                        with information of students or graduates that they have placed or recruited.
+                        The report
+                        must include information about the students or graduates under following
+                        headings:
+                    </p>
+                    <ol>
+                        <li>
+                            Student Name
+                        </li>
+                        <li>
+                            ID Passport Number
+                        </li>
+                        <li>
+                            Contracting Organisation
+                        </li>
+                        <li>
+                            Contract Term
+                        </li>
+                        <li>
+                            Contract End Month
+                        </li>
+                        <li>
+                            Contract End Month Year
+                        </li>
+                        <li>
+                            Contract Type
+                        </li>
+                    </ol>
+                </li>
+                <li>
+                    <p>
+                        <strong>User-Provided Information.</strong> Users agree that any information
+                        provided to
+                        the CHIETA will be accurate and complete.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <strong>User-Provided Information.</strong> Users assume all risks related to
+                        the use of
+                        the database. Each user indemnifies and holds the CHIETA harmless from and
+                        against any
+                        losses, damages, liabilities or costs of any nature related in any manner to the
+                        use of
+                        the database by such User. The CHIETA will not be liable to Users for any claims
+                        for
+                        damages, whether direct, indirect, special, consequential, incidental or
+                        punitive, based
+                        on any cause of action whatsoever relating to the use of the database.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <strong>Amendment.</strong> These terms and conditions of use may be amended at
+                        any time
+                        by the CHIETA in its sole discretion. These terms and conditions of use
+                        constitute the
+                        entire agreement between the CHIETA and the User relating to the use of the
+                        database.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <strong>Acceptance of terms and conditions of use</strong> Your use and viewing
+                        of the
+                        database indicates your affirmative agreement to these terms and conditions. If
+                        you do
+                        not agree with these terms and conditions of use you are not entitled to use or
+                        interact
+                        with the database.
+                    </p>
+                </li>
+                 
+                    <ul>
+      
+      
+      
+              </div>
+              <div class="modal-footer">
+
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="submitForm()">ACCEPT</button>
+
+            
+                
+
+              </div>
+      
+          </form>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+ 
+
+        <script>
+          let validatedFormId = ""; // Track which form was validated
+      
+          function validateForm(formId, modalId) {
+              let form = document.getElementById(formId);
+              if (form.checkValidity()) {
+                  validatedFormId = formId; // Store which form was validated
+                  let modalElement = new bootstrap.Modal(document.getElementById(modalId));
+                  modalElement.show(); // Show the correct modal
+              } else {
+                  form.reportValidity(); // Highlight missing required fields
+              }
+          }
+      
+          function submitForm() {
+              if (validatedFormId) {
+                  document.getElementById(validatedFormId).submit(); // Submit the correct form
+              }
+          }
+      </script>
+
+
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var companyInput = document.querySelector("input[name='company_name']");
+            var sdlInput = document.querySelector("input[name='sdl_number']");
+            var companyForm = document.getElementById("companyForm");
+        
+            companyInput.addEventListener("input", function () {
+                var companyName = companyInput.value.trim().toLowerCase(); // Convert input to lowercase
+        
+                if (companyName.length > 1) { // Prevent unnecessary API calls
+                    fetch("/get_sdl_number", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ company_name: companyName })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log("🔍 [DEBUG] Received API Response:", data);  // ✅ Debugging in browser console
+        
+                        if (data.sdl_number) {
+                            console.log("✅ [DEBUG] SDL Number Found:", data.sdl_number);  // ✅ Debug SDL number
+                            sdlInput.value = data.sdl_number;  // ✅ Update input field
+                            sdlInput.placeholder = "SDL Number: " + data.sdl_number; 
+                            sdlInput.required = false;  // ✅ Remove required if SDL number is found
+                        } else {
+                            console.log("❌ [DEBUG] No SDL Number Found for:", companyName);  // ✅ Log missing number
+                            sdlInput.value = "";  // ✅ Clear field
+                            sdlInput.placeholder = "No registered SDL number found for your company name"; // ✅ Show message
+                            sdlInput.required = true;  // ✅ Make required so form cannot be submitted
+                        }
+                    })
+                    .catch(error => console.error("❌ [ERROR] Fetching SDL number failed:", error));
+                } else {
+                    sdlInput.value = ""; // ✅ Clear field if input is too short
+                    sdlInput.placeholder = "Enter Company Name First"; // ✅ Reset placeholder
+                    sdlInput.required = true; // ✅ Prevent form submission without SDL
+                }
+            });
+        
+            // Ensure the form does not submit if SDL number is missing
+            companyForm.addEventListener("submit", function (event) {
+                if (!sdlInput.value) {
+                    alert("No SDL Number found for this company. Please check your company name or contact support.");
+                    event.preventDefault(); // ✅ Prevent form submission
+                }
+            });
+        });
+        </script>
+        
+        
+        
+        
+        
+        
+      
+      
+      
+
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <footer class="bg-dark text-white text-center py-3 mt-auto footer">
+    &copy; 2024 Copyright CHIETA. All rights reserved
+  </footer>
+</body>
+</html>

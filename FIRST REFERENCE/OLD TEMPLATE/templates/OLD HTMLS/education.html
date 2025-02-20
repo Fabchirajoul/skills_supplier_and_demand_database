@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Education | SSDD</title>
+    <link rel="stylesheet" href="/static/CSS/educaion.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+</head>
+
+<body>
+    <div class="dashboard-container">
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            
+
+            <div class="graduate-icon"><img src="/static/images/logo_simplebbbbbbbbbbbbbb.png" alt=" " style=" width: 130px;">
+       
+       
+       
+       
+       
+        </div><br><br>
+        <ul>
+            <li><a href="{{ url_for('dashboardinformation') }}" class="nav-item"><i class="fa fa-home"></i> Home</a></li>
+
+
+            <li><a href="{{ url_for('dashboardPersonalInformation') }}" class="nav-item"><i class="fa fa-user"></i> Personal Info</a></li>
+
+            
+            <li><a href="{{ url_for('dashboardEducation') }}" class="nav-item"><i class="fa fa-graduation-cap"></i> Education</a></li>
+            <li><a href="{{ url_for('dashboardWorkHistory') }}" class="nav-item"><i class="fa fa-briefcase"></i> Work History</a></li>
+            <li><a href="{{ url_for('dashboardAttachment') }}" class="nav-item"><i class="fa fa-paperclip"></i> Attachments</a></li>
+            <li><a href="{{ url_for('dashboardGenerateCV') }}" class="nav-item"><i class="fa fa-file"></i> Generate CV</a></li>
+            <li>🔔 Notifications</li>
+            <li>🛠️ Help & Support</li> <br><br><br><br>
+            <button class="fixy">⚙️ Settings</button>
+            <form action="logout" method="GET, POST">
+                <button class="fix">🚪 Log Out</button><br>
+              </form>
+            <!-- <li><i>🆘</i> Help Services</li> -->
+            <!-- <li><i>🎓</i> Student Portal</li>
+            <li><i>📚</i> Courses</li>
+            <li><i>📝</i> Assignments</li> -->
+        </ul>
+      
+
+
+        <img src="/static/images/rb_2149331949.png" alt="" width="199px">
+    </div>
+
+        <!-- Content -->
+        <div class="content">
+
+            <!-- Top Bar -->
+            <div class="topbar">
+                <input type="search" placeholder="">
+                <!-- <div class="icon">🔍</div> -->
+
+
+            </div>
+
+            <!-- Welcome Box -->
+            <!-- <img src="./images/rb_2148892786.png" alt="" width="90px" height="100px">
+            <div class="welcome-box">
+                <br>Welcome, Natasia Mahure
+                <br>
+                <div class="date">September 15, 2024</div>
+            </div> -->
+            <div class="welcome-container">
+                <div class="image-container">
+                    
+
+                    
+                    
+                    
+                    <img src="/static/images/Learning-cuate.png" alt="Profile Picture" width="200px" height="190px">
+                
+                
+                </div>
+                
+            </div>
+
+
+            <div class="form-container">
+                <h1>Education Information Form</h1>
+                <form id="education-form" action="/education" method="post">
+                    <div id="education-entries">
+                        <div class="education-entry">
+                            <h3>High School Details</h3>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="highschool-name">High School Name:</label>
+                                    <input type="text" id="highschool-name" name="highschool-name[]" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="highschool-year">Year Graduated:</label>
+                                    <input type="number" id="highschool-year" name="highschool-year[]" required>
+                                </div>
+                            </div>
+                            <button type="button" class="delete-entry">Delete</button>
+                        </div>
+            
+                        <div class="education-entry">
+                            <h3>Tertiary Education Details</h3>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="university-name">University Name:</label>
+                                    
+
+                                    <select id="institute" name="university-name[]" onchange="document.getElementById('selected-institute').value = this.value">
+                                        <option value="">--- Select Institute ---</option>
+                                        {% for institution in distinct_data.institutions %}
+                                        <option value="{{ institution }}">{{ institution }}</option>
+                                        {% endfor %}
+                                    </select>
+
+
+                                </div>
+
+                               
+
+
+                                <div class="form-group">
+                                    <label for="degree">Qualification Type:</label>
+                                  
+
+                                    <select id="qualification-type" name="degree[]" onchange="document.getElementById('selected-qualification').value = this.value">
+                                        <option value="">--- Select Qualification ---</option>
+                                        {% for qualification in distinct_data.qualification_types %}
+                                        <option value="{{ qualification }}">{{ qualification }}</option>
+                                        {% endfor %}
+                                    </select>
+
+
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="university-year">Year Graduated:</label>
+                                    <input type="number" id="university-year" name="university-year[]" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="degree">Field of Study:</label>
+                                  
+
+
+                                    <select id="field-study" name="field-of-study[]"  onchange="document.getElementById('selected-field-study').value = this.value">
+                                        <option value="">--- Select Field of Study ---</option>
+                                        {% for field in distinct_data.fields_of_study %}
+                                        <option value="{{ field }}">{{ field }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+
+
+                            </div>
+                            <button type="button" class="delete-entry">Delete</button>
+                        </div>
+                    </div>
+                    
+                    <div class="button-row">
+                        <button type="button" id="add-education">Add Education</button>
+                        <button type="submit">Save</button>
+                    </div>
+                </form>
+            </div>
+            
+            <script>
+                document.getElementById('add-education').addEventListener('click', function () {
+                    const newEntry = document.createElement('div');
+                    newEntry.classList.add('education-entry');
+                    newEntry.innerHTML = `
+                        <h3>Additional Education Details</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="institution-name">Institution Name:</label>
+                                 <select id="institute" name="university-name[]" onchange="document.getElementById('selected-institute').value = this.value">
+                                        <option value="">--- Select Institute ---</option>
+                                        {% for institution in distinct_data.institutions %}
+                                        <option value="{{ institution }}">{{ institution }}</option>
+                                        {% endfor %}
+                                    </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="qualification">Qualification Type:</label>
+                             
+
+                                    <select id="qualification-type" name="degree[]" onchange="document.getElementById('selected-qualification').value = this.value">
+                                        <option value="">--- Select Qualification ---</option>
+                                        {% for qualification in distinct_data.qualification_types %}
+                                        <option value="{{ qualification }}">{{ qualification }}</option>
+                                        {% endfor %}
+                                    </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="graduation-year">Year Graduated:</label>
+                                <input type="number" name="university-year[]" required>
+                            </div>
+
+                             <div class="form-group">
+                                <label for="graduation-year">Field of Study:</label>
+                                  <select id="field-study" name="field-of-study[]"  onchange="document.getElementById('selected-field-study').value = this.value">
+                                        <option value="">--- Select Field of Study ---</option>
+                                        {% for field in distinct_data.fields_of_study %}
+                                        <option value="{{ field }}">{{ field }}</option>
+                                        {% endfor %}
+                                    </select>
+                            </div>
+
+
+                        </div>
+                        <button type="button" class="delete-entry">Delete</button>
+                    `;
+                    document.getElementById('education-entries').appendChild(newEntry);
+                });
+                
+            
+                document.getElementById('education-form').addEventListener('click', function (e) {
+                    if (e.target.classList.contains('delete-entry')) {
+                        e.target.parentElement.remove();
+                    }
+                });
+            </script>
+            
+
+
+
+</body>
+
+</html>

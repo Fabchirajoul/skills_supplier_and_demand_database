@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Registration</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <script src="/static/js/addworkhistory.js"></script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-primary-subtle px-3 py-5 mb-2">
+    <img src="/static/images/chietaLogo.png" alt="Chieta Logo">
+    <div class="collapse navbar-collapse" id="navbarContent"></div>
+  </nav>
+
+  <div class="container my-4">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link" data-bs-toggle="tab" href="#personal_info">PERSONAL INFORMATION</a>
+      </li>
+      <li class="nav-item">
+        <a  class="nav-link active" data-bs-toggle="tab" href="#education">EDUCATION</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-bs-toggle="tab" href="#work_history">WORK HISTORY</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-bs-toggle="tab" href="#skills">SKILLS</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-bs-toggle="tab" href="#cv">DOCUMENTS</a>
+      </li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <!-- Personal Information -->
+      <div class="tab-pane fade" id="personal_info">
+        <div class="card shadow-lg mt-4">
+          <div class="card-header p-0 mb-2">
+            <h3 class="py-3 ps-4">STEP 1 OF 5: PERSONAL INFORMATION</h3>
+            <p style="float: right;"><b>Fields marked (*) are mandatory</b> </p>
+       
+          </div>
+          <div class="card-body p-2">
+            <form action="#" method="POST" enctype="multipart/form-data">
+              <!-- Row 1 -->
+              <div class="row mb-3">
+                  <div class="col-md-6">
+                  <label for="first_name" class="form-label" reuired><b>First Name</b></label>
+                  <input type="text" class="form-control required" id="first_name" placeholder="First Name*" required>
+                  </div>
+                  <div class="col-md-6">
+                  <label for="last_name" class="form-label"><b>Last Name</b></label>
+                  <input type="text" class="form-control" id="last_name" placeholder="Last Name*" required>
+                  </div>
+              </div>
+      
+              <!-- Row 2 -->
+              <div class="row mb-3">
+                  <div class="col-md-6">
+                  <label for="dob" class="form-label"><b>Date of Birth (DOB)</b></label>
+                  <input type="date" class="form-control" id="dob">
+                  </div>
+                  <div class="col-md-6">
+                  <label for="passport_number" class="form-label"><b>ID/Passport Number</b></label>
+                  <input type="text" class="form-control" id="passport_number" placeholder="ID/Password Number *" required>
+                  </div>
+                  <!-- <div class="col-md-4">
+                  <label for="phone" class="form-label">Phone Number</label>
+                  <input type="text" class="form-control" id="phone">
+                  </div> -->
+              </div>
+      
+              <!-- Row 2 -->
+              <div class="row mb-3">
+                  <div class="col-md-4">
+                  <label for="address" class="form-label"><b>Address</b></label>
+                  <input type="address" class="form-control" id="address" placeholder="Home Address *" required>
+                  </div>
+                  <div class="col-md-4">
+                  <label for="city" class="form-label"><b>City/Town of residence</b></label>
+                  <input type="text" class="form-control" id="city" placeholder="Town/City *" required>
+                  </div>
+                  <div class="col-md-4">
+                      <label for="code" class="form-label"><b>Postal Code</b></label>
+                      <input type="number" class="form-control" id="code" placeholder="Postal Code">
+                      </div>
+                  
+              </div>
+      
+              <!-- Row 3 -->
+              <div class="row mb-3">
+                  <div class="col-md-4">
+                  <label for="state" class="form-label"><b>Province/State</b></label>
+                  <select class="form-select" id="province" name="province" onchange="document.getElementById('selected-province').value = this.value">
+                    <option value="">--- Select Province * ---</option required>
+                    {% for item in distinct_data.provinces_cities %}
+                    <option value="{{ item.province }}">{{ item.province }}</option>
+                    {% endfor %}
+                </select>
+                 
+                
+                </div>
+                  <div class="col-md-4">
+                  <label for="phone" class="form-label"><b>Phone Number (Home/Mobile)</b></label>
+                  <input type="number" class="form-control" id="phone" placeholder="Contact number *" required>
+                  </div>
+                  <div class="col-md-4">
+                      <label for="race" class="form-label"><b>Race</b></label>
+                      <select class="form-select" required>
+                        <option value="">-- Select your race * --</option>
+                        <option value="African">African</option>
+                        <option value="White">White</option>
+                        <option value="Indian">Indian</option>
+                        <option value="Asian">Asian</option>
+                        <option value="Colored">Colored</option>
+      
+                       </select>
+                      </div>
+              </div>
+      
+              <!-- Row 4 -->
+              <div class="row mb-3">
+                  <div class="col-md-4">
+                  <label for="gender" class="form-label"><b>Gender</b></label>
+                 <select class="form-select" required>
+                  <option value="">-- Select Gender --</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="other">other</option>
+
+                 </select>
+                 
+                
+                </div>
+                  <div class="col-md-4">
+                  <label for="placement" class="form-label"><b>Seeking Placement</b></label>
+                  <select class="form-select" required>
+                    <option value="">-- Select Seeking Placement * --</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                   
+  
+                   </select>
+                 
+                
+                
+                
+                </div>
+      
+                  <div class="col-md-4">
+                      <label for="opportunities" class="form-label"><b>Preffered Opportunities</b></label>
+                      <select class="form-select">
+                        <option value="">-- Select Preffered Opportunities --</option>
+                        <option value="Yes">Skills Programmes</option>
+                        <option value="No">Apprenticeships Grant</option>
+                        <option value="WIL - Workplace experience">WIL - Workplace experience</option>
+                       
+                        <option value="Learnerships Grant">Learnerships Grant</option>
+                        <option value="AET Provision Incentive">AET Provision Incentive</option>\
+                        <option value="WIL - Workplacement for Employment">WIL - Workplacement for Employment</option>
+                        <option value="TVET College Lecturer Development">TVET College Lecturer Development</option>
+                        <option value="Bursaries">Bursaries</option>
+                        <option value="RPL">RPL</option>
+                        <option value="WIL - Workbased Learning">WIL - Workbased Learning</option>
+                        
+      
+                       </select>
+                      </div>
+              </div>
+      
+              <!-- Row 4 -->
+              <div class="row mb-3">
+                <div class="col-md-4">
+                  <label for="citizen" class="form-label"><b>Citizenship</b></label>
+                  <input list="countries" class="form-control" id="citizen" placeholder="-- Start typing to select citizenship * --" required>
+                  <datalist id="countries">
+                    <option value="Afghanistan">
+                    <option value="Albania">
+                    <option value="Algeria">
+                    <option value="Andorra">
+                    <option value="Angola">
+                    <option value="Antigua and Barbuda">
+                    <option value="Argentina">
+                    <option value="Armenia">
+                    <option value="Australia">
+                    <option value="Austria">
+                    <option value="Azerbaijan">
+                    <option value="Bahamas">
+                    <option value="Bahrain">
+                    <option value="Bangladesh">
+                    <option value="Barbados">
+                    <option value="Belarus">
+                    <option value="Belgium">
+                    <option value="Belize">
+                    <option value="Benin">
+                    <option value="Bhutan">
+                    <option value="Bolivia">
+                    <option value="Bosnia and Herzegovina">
+                    <option value="Botswana">
+                    <option value="Brazil">
+                    <option value="Brunei">
+                    <option value="Bulgaria">
+                    <option value="Burkina Faso">
+                    <option value="Burundi">
+                    <option value="Cabo Verde">
+                    <option value="Cambodia">
+                    <option value="Cameroon">
+                    <option value="Canada">
+                    <option value="Central African Republic">
+                    <option value="Chad">
+                    <option value="Chile">
+                    <option value="China">
+                    <option value="Colombia">
+                    <option value="Comoros">
+                    <option value="Congo (Congo-Brazzaville)">
+                    <option value="Congo (Congo-Kinshasa)">
+                    <option value="Costa Rica">
+                    <option value="Croatia">
+                    <option value="Cuba">
+                    <option value="Cyprus">
+                    <option value="Czechia">
+                    <option value="Denmark">
+                    <option value="Djibouti">
+                    <option value="Dominica">
+                    <option value="Dominican Republic">
+                    <option value="Ecuador">
+                    <option value="Egypt">
+                    <option value="El Salvador">
+                    <option value="Equatorial Guinea">
+                    <option value="Eritrea">
+                    <option value="Estonia">
+                    <option value="Eswatini">
+                    <option value="Ethiopia">
+                    <option value="Fiji">
+                    <option value="Finland">
+                    <option value="France">
+                    <option value="Gabon">
+                    <option value="Gambia">
+                    <option value="Georgia">
+                    <option value="Germany">
+                    <option value="Ghana">
+                    <option value="Greece">
+                    <option value="Grenada">
+                    <option value="Guatemala">
+                    <option value="Guinea">
+                    <option value="Guinea-Bissau">
+                    <option value="Guyana">
+                    <option value="Haiti">
+                    <option value="Honduras">
+                    <option value="Hungary">
+                    <option value="Iceland">
+                    <option value="India">
+                    <option value="Indonesia">
+                    <option value="Iran">
+                    <option value="Iraq">
+                    <option value="Ireland">
+                    <option value="Israel">
+                    <option value="Italy">
+                    <option value="Jamaica">
+                    <option value="Japan">
+                    <option value="Jordan">
+                    <option value="Kazakhstan">
+                    <option value="Kenya">
+                    <option value="Kiribati">
+                    <option value="Kuwait">
+                    <option value="Kyrgyzstan">
+                    <option value="Laos">
+                    <option value="Latvia">
+                    <option value="Lebanon">
+                    <option value="Lesotho">
+                    <option value="Liberia">
+                    <option value="Libya">
+                    <option value="Liechtenstein">
+                    <option value="Lithuania">
+                    <option value="Luxembourg">
+                    <option value="Madagascar">
+                    <option value="Malawi">
+                    <option value="Malaysia">
+                    <option value="Maldives">
+                    <option value="Mali">
+                    <option value="Malta">
+                    <option value="Marshall Islands">
+                    <option value="Mauritania">
+                    <option value="Mauritius">
+                    <option value="Mexico">
+                    <option value="Micronesia">
+                    <option value="Moldova">
+                    <option value="Monaco">
+                    <option value="Mongolia">
+                    <option value="Montenegro">
+                    <option value="Morocco">
+                    <option value="Mozambique">
+                    <option value="Myanmar">
+                    <option value="Namibia">
+                    <option value="Nauru">
+                    <option value="Nepal">
+                    <option value="Netherlands">
+                    <option value="New Zealand">
+                    <option value="Nicaragua">
+                    <option value="Niger">
+                    <option value="Nigeria">
+                    <option value="North Korea">
+                    <option value="North Macedonia">
+                    <option value="Norway">
+                    <option value="Oman">
+                    <option value="Pakistan">
+                    <option value="Palau">
+                    <option value="Palestine">
+                    <option value="Panama">
+                    <option value="Papua New Guinea">
+                    <option value="Paraguay">
+                    <option value="Peru">
+                    <option value="Philippines">
+                    <option value="Poland">
+                    <option value="Portugal">
+                    <option value="Qatar">
+                    <option value="Romania">
+                    <option value="Russia">
+                    <option value="Rwanda">
+                    <option value="Saint Kitts & Nevis">
+                    <option value="Saint Lucia">
+                    <option value="Saint Vincent & Grenadines">
+                    <option value="Samoa">
+                    <option value="San Marino">
+                    <option value="Sao Tome & Principe">
+                    <option value="Saudi Arabia">
+                    <option value="Senegal">
+                    <option value="Serbia">
+                    <option value="Seychelles">
+                    <option value="Sierra Leone">
+                    <option value="Singapore">
+                    <option value="Slovakia">
+                    <option value="Slovenia">
+                    <option value="Solomon Islands">
+                    <option value="Somalia">
+                    <option value="South Africa">
+                    <option value="South Korea">
+                    <option value="South Sudan">
+                    <option value="Spain">
+                    <option value="Sri Lanka">
+                    <option value="Sudan">
+                    <option value="Suriname">
+                    <option value="Sweden">
+                    <option value="Switzerland">
+                    <option value="Syria">
+                    <option value="Taiwan">
+                    <option value="Tajikistan">
+                    <option value="Tanzania">
+                    <option value="Thailand">
+                    <option value="Timor-Leste">
+                    <option value="Togo">
+                    <option value="Tonga">
+                    <option value="Trinidad & Tobago">
+                    <option value="Tunisia">
+                    <option value="Turkey">
+                    <option value="Turkmenistan">
+                    <option value="Tuvalu">
+                    <option value="Uganda">
+                    <option value="Ukraine">
+                    <option value="United Arab Emirates">
+                    <option value="United Kingdom">
+                    <option value="United States">
+                    <option value="Uruguay">
+                    <option value="Uzbekistan">
+                    <option value="Vanuatu">
+                    <option value="Vatican City">
+                    <option value="Venezuela">
+                    <option value="Vietnam">
+                    <option value="Yemen">
+                    <option value="Zambia">
+                    <option value="Zimbabwe">
+                  </datalist>
+                </div>
+                
+                  
+                  
+                  
+                  
+                  
+                  <div class="col-md-4">
+                  <label for="relocate" class="form-label"><b>Are you willing to relocate?</b></label>
+                  <select class="form-select">
+                    <option value="">-- Select Relocation --</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                  
+                  </select>
+                  </div>
+      
+                  <div class="col-md-4">
+                      <label for="disability" class="form-label"><b>Disability</b></label>
+                      <select class="form-select">
+                        <option value="">-- Select Disability --</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                      
+                      </select>
+                      
+                    
+                    
+                    </div>
+              </div>
+      
+              <div class="mb-3">
+                <label for="select_languages" class="form-label"><b>Select Languages</b></label>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="english" name="languages" value="English">
+                  <label class="form-check-label" for="english">English</label>
+                </div>
+
+                
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="french" name="languages" value="French">
+                  <label class="form-check-label" for="french">Afrikaans</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="spanish" name="languages" value="Spanish">
+                  <label class="form-check-label" for="spanish">Zulu</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="german" name="languages" value="German">
+                  <label class="form-check-label" for="german">Tsonga</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="other" name="languages" value="Other">
+                  <label class="form-check-label" for="other">Venda</label>
+                </div>
+
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="other" name="languages" value="Other">
+                  <label class="form-check-label" for="other">Southern Sotho</label>
+                </div>
+
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="other" name="languages" value="Other">
+                  <label class="form-check-label" for="other">Swati</label>
+                </div>
+
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="other" name="languages" value="Other">
+                  <label class="form-check-label" for="other">South African Sign Language</label>
+                </div>
+
+
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="other" name="languages" value="Other">
+                  <label class="form-check-label" for="other">Xhosa</label>
+                </div>
+
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="other" name="languages" value="Other">
+                  <label class="form-check-label" for="other">Nothern Sotho</label>
+                </div>
+
+
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="other" name="languages" value="Other">
+                  <label class="form-check-label" for="other">Tswana</label>
+                </div>
+
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="other" name="languages" value="Other">
+                  <label class="form-check-label" for="other">Ndebele</label>
+                </div>
+
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="other" name="languages" value="Other">
+                  <label class="form-check-label" for="other">Other</label>
+                </div>
+              
+              
+              </div>
+
+
+
+
+
+      
+              <!-- Tell us about yourself -->
+              <div class="mb-3">
+                  <label for="tell_about_yourself" class="form-label"><h3><b>Tell us about yourself</b></h3></label>
+                  <h6>Separate each achievement with a comma. (Achievements submitted in English are appreciated). *</h6>
+                  <textarea 
+                  class="form-control" 
+                  id="tell_about_yourself" 
+                  rows="4"
+                  placeholder="Tell us about yourself"
+                  ></textarea>
+              </div>
+      
+              <!-- Profile Picture -->
+              <div class="mb-3">
+                  <label for="profile_picture" class="form-label"><b>Profile Picture</b></label>
+                
+                  <input type="file" class="form-control" id="profile_picture">
+              </div>
+      
+              <hr>
+      
+              <!-- Buttons -->
+              <div class="d-flex justify-content-between mt-4">
+                  <a href="#" class=""></a>
+                  <button type="submit" class="btn btn-success" style="float:right;">NEXT</button>
+              </div>
+              </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Education -->
+      <div class="tab-pane fade show active" id="education">
+        <div class="card shadow-lg mt-4">
+            <div class="card-header p-0 mb-2">
+                <h3 class="py-3 ps-4">STEP 2 of 5: ACADEMIC INFORMATION</h3>
+                <p style="float: right;"><b>Fields marked (*) are mandatory</b> </p>
+            </div>
+            <div class="card-body p-2">
+                <form action="#" method="POST" id="education-form">
+                    
+                    <div id="education-entries">
+                        <!-- Initial Education Entry -->
+                        <div class="education-entry border p-3 mb-3">
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label class="form-label"><b>Academic Institution</b></label>
+                                    <select class="form-select" name="university-name[]" required>
+                                        <option value="">--- Select Institute * ---</option>
+                                        {% for institution in distinct_data.institutions %}
+                                        <option value="{{ institution }}">{{ institution }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+    
+                                <div class="col-md-4">
+                                    <label class="form-label"><b>Qualification</b></label>
+                                    <select class="form-select" name="degree[]" required>
+                                        <option value="">--- Select Qualification * ---</option>
+                                        {% for qualification in distinct_data.qualification_types %}
+                                        <option value="{{ qualification }}">{{ qualification }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+    
+                                <div class="col-md-4">
+                                    <label class="form-label"><b>Field of Study</b></label>
+                                    <select class="form-select" name="field-of-study[]" required>
+                                        <option value="">--- Select Field of Study ---</option>
+                                        {% for field in distinct_data.fields_of_study %}
+                                        <option value="{{ field }}">{{ field }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+    
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label class="form-label"><b>Completion Status</b></label>
+                                    <select class="form-select" name="completion-status[]" required>
+                                        <option value="">-- Select Completion Status * --</option>
+                                        <option value="Completed">Completed</option>
+                                        <option value="In Progress">In Progress</option>
+                                        <option value="Not Started">Not Started</option>
+                                        <option value="Defered">Defered</option>
+                                        <option value="Dropped">Dropped</option>
+                                        <option value="On Hold">On Hold</option>
+                                        <option value="Pending Approval">Pending Approval</option>
+                                        <option value="Not Available">Not Available</option>
+                                    </select>
+                                </div>
+    
+                                <div class="col-md-4">
+                                    <label class="form-label"><b>Country</b></label>
+                                    <input list="countries" class="form-control" name="education-country[]" placeholder="-- Start typing to select country * --" required>
+                                </div>
+    
+                                <div class="col-md-4">
+                                    <label class="form-label"><b>City</b></label>
+                                    <input type="text" class="form-control" name="education-city[]" placeholder="Enter city name *" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <!-- Buttons Aligned Right -->
+                    <div class="d-flex justify-content-end mt-3">
+                        <button type="button" class="btn btn-success me-2" id="add-education">ADD</button>
+                        <button type="button" class="btn btn-danger" id="remove-education" disabled>REMOVE</button>
+                    </div>
+    
+                    <br><br>
+    
+                    <!-- Navigation Buttons -->
+                    <div class="d-flex justify-content-between">
+                        <a href="#personal_info" class="btn btn-warning">PREVIOUS</a>
+                        <button type="submit" class="btn btn-success">NEXT</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+
+      <!-- Work History -->
+      <div class="tab-pane fade" id="work_history">
+        <div class="card shadow-lg mt-4">
+            <div class="card-header p-0 mb-2">
+                <h3 class="py-3 ps-4">STEP 3 of 5: WORK HISTORY</h3>
+                <p style="float: right;"><b>Fields marked (*) are mandatory</b> </p>
+            </div>
+            <div class="card-body p-2">
+                <form action="#" method="POST" id="work-history-form">
+                    
+                    <div id="work-entries">
+                        <!-- Initial Work History Entry -->
+                        <div class="work-entry border p-3 mb-3">
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label"><b>Employer</b></label>
+                                    <input type="text" class="form-control" name="employer[]" placeholder="Enter Employer name" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label"><b>Job Title</b></label>
+                                    <input type="text" class="form-control" name="job_title[]" placeholder="Enter Job Title" required>
+                                </div>
+                            </div>
+    
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label class="form-label"><b>Current place of employment?</b></label>
+                                    <select class="form-select" name="current_employment[]">
+                                        <option value="">-- Currently Employed --</option>
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">No</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label"><b>Start Date</b></label>
+                                    <input type="date" class="form-control" name="start_date[]" required>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label"><b>End Date</b></label>
+                                    <input type="date" class="form-control" name="end_date[]">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+    
+                    <!-- Buttons Aligned Right -->
+                    <div class="d-flex justify-content-end mt-3">
+                        <button type="button" class="btn btn-success me-2" id="add-work">ADD</button>
+                        <button type="button" class="btn btn-danger" id="remove-work" disabled>REMOVE</button>
+                    </div>
+    
+                    <br><br>
+    
+                    <!-- Navigation Buttons -->
+                    <div class="d-flex justify-content-between">
+                        <a href="#personal_info" class="btn btn-warning">PREVIOUS</a>
+                        <button type="submit" class="btn btn-success">NEXT</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+
+      <!-- Skills -->
+      <div class="tab-pane fade" id="skills">
+        <div class="card shadow-lg mt-4">
+            <div class="card-header p-0 mb-2">
+                <h3 class="py-3 ps-4">STEP 4 of 5: SKILLS</h3>
+                <p style="float: right;"><b>Fields marked (*) are mandatory</b> </p>
+            </div>
+            <div class="card-body p-2">
+                <form action="#" method="POST" id="skills-form">
+                    
+                    <div id="skills-entries">
+                        <!-- Initial Skill Entry -->
+                        <div class="skill-entry border p-3 mb-3">
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label"><b>Skills</b></label>
+                                    <select class="form-select" name="skills[]" required>
+                                        <option value="">-- Select a skill --</option>
+                                        <option value="Backend Development">Backend Development</option>
+                                        <option value="Frontend Development">Frontend Development</option>
+                                        <option value="Version Control">Version Control</option>
+                                        <option value="UI/UX Design">UI/UX Design</option>
+                                    </select>
+                                </div>
+    
+                                <div class="col-md-6">
+                                    <label class="form-label"><b>Proficiency</b></label>
+                                    <select class="form-select" name="proficiency[]" required>
+                                        <option value="">-- Select Proficiency --</option>
+                                        <option value="Beginner">Beginner</option>
+                                        <option value="Intermediate">Intermediate</option>
+                                        <option value="Advanced">Advanced</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <!-- Buttons Aligned Right -->
+                    <div class="d-flex justify-content-end mt-3">
+                        <button type="button" class="btn btn-success me-2" id="add-skill">ADD</button>
+                        <button type="button" class="btn btn-danger" id="remove-skill" disabled>REMOVE</button>
+                    </div>
+    
+                    <br><br>
+    
+                    <!-- Navigation Buttons -->
+                    <div class="d-flex justify-content-between">
+                        <a href="#work_history" class="btn btn-warning">PREVIOUS</a>
+                        <button type="submit" class="btn btn-success">NEXT</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+
+      <!-- CV -->
+      <div class="tab-pane fade" id="cv">
+        <div class="card shadow-lg mt-4">
+            <div class="card-header p-0 mb-2">
+                <h3 class="py-3 ps-4">STEP 5 of 5: UPLOAD DOCUMENTS</h3>
+                <p style="float: right;"><b>Fields marked (*) are mandatory</b> </p>
+            </div>
+            <div class="card-body p-2">
+                <form action="#" method="POST" id="cv-form">
+                    
+                    <div id="cv-entries">
+                        <!-- Initial CV Upload Entry -->
+                        <div class="cv-entry border p-3 mb-3">
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label"><b>Document Type (*)</b></label>
+                                    <select class="form-select" name="document-type[]" required>
+                                        <option value="">-- Select Document Type --</option>
+                                        <option value="Resume">Resume</option>
+                                        <option value="Cover Letter">Cover Letter</option>
+                                        <option value="Certificates">Certificates</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+    
+                                <div class="col-md-6">
+                                    <label class="form-label"><b>Upload Document (*)</b></label>
+                                    <input type="file" class="form-control" name="cv-file[]" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <!-- Buttons Aligned Right -->
+                    <div class="d-flex justify-content-end mt-3">
+                        <button type="button" class="btn btn-success me-2" id="add-cv">ADD</button>
+                        <button type="button" class="btn btn-danger" id="remove-cv" disabled>REMOVE</button>
+                    </div>
+    
+                    <br>
+    
+                    <!-- Navigation Buttons -->
+                    <div class="d-flex justify-content-between">
+                        <a href="#education" class="btn btn-warning">PREVIOUS</a>
+                        <button type="submit" class="btn btn-success">COMPLETE REGISTRATION</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+
+
+
+
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <footer class="text-light py-4" style="background-color: #3D1B5C;">
+    <div class="container">
+      <div class="row">
+        <!-- Logo and Privacy Policy -->
+        <div class="col-md-4">
+          <img src="/static/images/chietaLogo.png" alt="Chieta Logo" class="mb-2" style="max-width: 150px;">
+          <p>We respect your right to privacy and therefore aim to ensure that we comply with the legal requirement of the POPI Act, which regulates the manner in which we collect, process, store, share, and destroy any personal information you have provided to us.</p>
+        </div>
+        
+        <!-- Quick Links -->
+        <div class="col-md-4">
+          <h5 class="fw-bold">Quick Links</h5>
+          <ul class="list-unstyled">
+            <li><a href="#" class="text-warning">About Us</a></li>
+            <li><a href="#" class="text-warning">Discretionary Grants</a></li>
+            <li><a href="#" class="text-warning">Career Guidance</a></li>
+            <li><a href="#" class="text-warning">Tenders</a></li>
+            <li><a href="#" class="text-warning">FAQ</a></li>
+            <li><a href="#" class="text-warning">Contact Us</a></li>
+          </ul>
+        </div>
+        
+        <!-- Website Use and Social Media -->
+        <div class="col-md-4">
+          <h5 class="fw-bold">Website Use</h5>
+          <p>PAIA - This manual has been prepared in terms of the section 51 of the Promotion of Access to Information Act.</p>
+          <h6 class="fw-bold">Join the Conversation</h6>
+          <a href="#" class="text-light me-3"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="text-light me-3"><i class="bi bi-twitter"></i></a>
+          <a href="#" class="text-light me-3"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="text-light"><i class="bi bi-linkedin"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="text-center py-3" style="background-color: #2E1240;">
+      <small>Copyright &copy; 2024 CHIETA. All rights reserved.</small>
+    </div>
+  </footer>
+  
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+  
+
+
+</body>
+</html>
+
+
+
+

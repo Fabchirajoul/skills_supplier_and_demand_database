@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | SSDD</title>
+    <link rel="stylesheet" href="/static/CSS/dasboradlogin.css">
+    <link rel="stylesheet" href="/static/CSS/loginMine.css">
+        <!-- Font Icon -->
+        <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <link rel="icon" type="image/x-icon" href="/static/images/Favicon.ico">
+        <style>
+            .hidden {
+                display: none;
+            }
+        </style>
+
+
+            <!-- Include Alpine.js library -->
+
+    <script src="/static/js/code.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+</head>
+  <body x-data="CHIETASSDDPHASE1">
+  
+        <!-- Header Section -->
+        <header class="custom-header">
+            <div class="header-top">
+                <span>Tel: 087 357 6608 | 011 628 7000 | Anti-Fraud Line: 0800 333 120</span>
+                <span>
+                    <a href="#">FAQ</a> | 
+                    <a href="#">COVID-19 Information</a> | 
+                    <a href="#">Stakeholders Login</a>
+                </span>
+            </div>
+            <div class="header-bottom">
+                <img src="/static/images/chietaLogo.png" alt="Chieta Logo" class="logo">
+                <nav>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">What We Do</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Procurement</a></li>
+                        <li><a href="#">Media Gallery</a></li>
+                        <li><a href="#">Resources</a></li>
+                        <li><a href="#">Newsroom</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+    
+        <!-- Main Dashboard Content -->
+        <div class="dashboard-container">
+           
+    
+            <!-- Content -->
+            <div class="content">
+
+                <!-- Sign up form -->
+<!-- Sign up form -->
+<section class="signup">
+    <div class="container-sign-up">
+       
+        <div class="signup-content">
+            
+            
+            <div class="signup-form">
+                
+                
+                <div style="display: flex">
+                    <button class="button-register"
+                      x-on:click="openHome('StudentRegister')" 
+                      :class="{ 'active': StudentRegister }">
+                      Learner Sign Up
+                    </button>
+                    <button class="button-register" 
+                      x-on:click="openHome('CompanyRegister')" 
+                      :class="{ 'active': CompanyRegister }">
+                      Company Sign Up
+                    </button>
+                  </div>
+                  
+                   <br><br>
+  
+            
+                
+          <section>
+<div x-show="StudentRegister">
+
+    
+    <form method="POST" action="/register">
+        <input type="hidden" name="AccountType" value="Learner" />
+        <div class="form-group">
+            <label for="surname">YOUR SURNAME</label>
+            <input type="text" name="surname" id="surname" placeholder="Enter your Surname" required />
+        </div>
+        <div class="form-group">
+            <label for="email">YOUR EMAIL</label>
+            <input type="email" name="email" id="email" placeholder="Enter your Email" required />
+        </div>
+        <div class="form-group">
+            <label for="password">YOUR PASSWORD</label>
+            <input type="password" name="password" id="password" placeholder="Enter your password" required />
+        </div>
+        <div class="form-group">
+            <label for="confirm_password">CONFIRM YOUR PASSWORD</label>
+            <input type="password" name="confirm_password" id="confirm_password" placeholder="Re-enter your Password" required />
+        </div>
+        <div class="form-group form-button">
+            <input type="submit" name="signup" id="signup" class="form-submit" value="REGISTER" />
+        </div>
+    </form>
+
+</div>
+
+
+
+          </section>
+
+
+
+
+          <section>
+
+            <div x-show="CompanyRegister">
+
+                <form method="POST" action="/register">
+                    <input type="hidden" name="AccountType" value="Company" />
+                    <div class="form-group">
+                        <label for="surname">YOUR SURNAME</label>
+                        <input type="text" name="surname" id="surname" placeholder="Enter your surname" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="email">YOUR EMAIL</label>
+                        <input type="email" name="email" id="email" placeholder="Enter your Email" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="password">YOUR PASSWORD</label>
+                        <input type="password" name="password" id="password" placeholder="Enter your password" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm_password">CONFIRM YOUR PASSWORD</label>
+                        <input type="password" name="confirm_password" id="confirm_password" placeholder="Re-enter your password" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="sdl_number">SDL NUMBER</label>
+                        <input type="text" name="sdl_number" id="sdl_number" placeholder="Enter Your Company's SDL Number" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="company_name">COMPANY NAME</label>
+                        <input type="text" name="company_name" id="company_name" placeholder="Enter Your Company's Name" required />
+                    </div>
+                    <div class="form-group form-button">
+                        <input type="submit" name="signup" id="signup" class="form-submit" value="REGISTER" />
+                    </div>
+                </form>
+            </div>
+
+
+
+          </section>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <br><br>
+
+            <P>Already have an account ? <a href="{{ url_for('login') }}" >Login</a></p> 
+            </div>
+            <div class="signup-image">
+                <figure><img src="/static/images/loginImage.jpg" alt="sign up image"></figure>
+             
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+               
+    
+               
+    
+               
+            </div>
+        </div>
+
+    <!-- Footer Section -->
+    <footer class="custom-footer">
+        <div class="footer-top">
+            <div class="footer-section footer-left">
+                <img src="/static/images/chietaLogo.png" alt="Chieta Logo" class="footer-logo">
+                <p>We respect your right to privacy and therefore aim to ensure that we comply with the legal requirement of the POPI Act, which regulates the manner in which we collect, process, store, share, and destroy any personal information you have provided to us.</p>
+            </div>
+            <div class="footer-section footer-center">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Discretionary Grants</a></li>
+                    <li><a href="#">Career Guidance</a></li>
+                    <li><a href="#">Tenders</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-section footer-right">
+                <h4>Website Use</h4>
+                <p>PAIA - This manual has been prepared in terms of the section 51 of the Promotion of Access to Information Act</p>
+                <h4>Join the Conversation</h4>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Copyright © 2024 CHIETA. All rights reserved.</p>
+        </div>
+    </footer>
+
+
+
+
+    <script>
+        // Function to update sub-departments based on department and account type selection
+        function updateSubDepartments() {
+            var userAccountType = document.getElementById('userAccountTYpe').value;
+            var department = document.getElementById('departmentSelect').value;
+    
+            if (userAccountType && department) {
+                // Send an AJAX request to get sub-departments
+                fetch('/get_sub_departments', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: 'department=' + encodeURIComponent(department) + '&user_role=' + encodeURIComponent(userAccountType)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    var subDepartmentSelect = document.getElementById('subDepartmentSelect');
+                    subDepartmentSelect.innerHTML = ''; // Clear existing options
+    
+                    // Populate sub-department dropdown
+                    data.forEach(function(subDept) {
+                        var option = document.createElement('option');
+                        option.value = subDept;
+                        option.textContent = subDept;
+                        subDepartmentSelect.appendChild(option);
+                    });
+                })
+                .catch(error => console.error('Error fetching sub-departments:', error));
+            }
+        }
+    
+        // Function to update "Person_to_Perform" dropdown based on the selected user role and department
+        function updatePersonToPerform() {
+            var userRole = document.getElementById('userAccountTYpe').value;
+            var department = document.getElementById('departmentSelect').value;
+    
+            if (userRole && department) {
+                // Send an AJAX request to get "Person_to_Perform"
+                fetch('/get_person_to_perform', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: 'user_role=' + encodeURIComponent(userRole) + '&department=' + encodeURIComponent(department)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    var userPositionSelect = document.getElementById('UserPosition');
+                    userPositionSelect.innerHTML = ''; // Clear existing options
+    
+                    // Add a default option
+                    var defaultOption = document.createElement('option');
+                    defaultOption.value = '';
+                    defaultOption.disabled = true;
+                    defaultOption.selected = true;
+                    defaultOption.textContent = 'Provide Your Position';
+                    userPositionSelect.appendChild(defaultOption);
+    
+                    // Populate the "User Position" dropdown with options
+                    data.forEach(function(position) {
+                        var option = document.createElement('option');
+                        option.value = position;
+                        option.textContent = position;
+                        userPositionSelect.appendChild(option);
+                    });
+                })
+                .catch(error => console.error('Error fetching Person_to_Perform:', error));
+            }
+        }
+    
+        // Add event listeners to update both sub-departments and positions when the account type changes
+        document.getElementById('userAccountTYpe').addEventListener('change', function() {
+            updateSubDepartments();
+            updatePersonToPerform();
+        });
+        document.getElementById('departmentSelect').addEventListener('change', updatePersonToPerform);
+    </script>
+    
+    <script>
+        function toggleFields() {
+            var userAccountType = document.getElementById('userAccountTYpe').value;
+            var departmentSelect = document.getElementById('departmentSelect');
+            var subDepartmentSelect = document.getElementById('subDepartmentSelect');
+            var userPositionSelect = document.getElementById('UserPosition');
+        
+            if (userAccountType === 'IT') {
+                // Hide fields for IT
+                departmentSelect.parentElement.style.display = 'none';
+                subDepartmentSelect.parentElement.style.display = 'none';
+                userPositionSelect.parentElement.style.display = 'none';
+        
+                // Remove the 'required' attribute
+                departmentSelect.removeAttribute('required');
+                subDepartmentSelect.removeAttribute('required');
+                userPositionSelect.removeAttribute('required');
+            } else {
+                // Show fields for other account types
+                departmentSelect.parentElement.style.display = 'block';
+                subDepartmentSelect.parentElement.style.display = 'block';
+                userPositionSelect.parentElement.style.display = 'block';
+        
+                // Add the 'required' attribute back
+                departmentSelect.setAttribute('required', 'required');
+                subDepartmentSelect.setAttribute('required', 'required');
+                userPositionSelect.setAttribute('required', 'required');
+            }
+        }
+        
+        // Attach the event listener to the account type dropdown
+        document.getElementById('userAccountTYpe').addEventListener('change', toggleFields);
+        
+        // Run the function on page load to set the initial state based on the current selection
+        window.onload = toggleFields;
+        
+    </script>
+  
+    
+    
+    
+</body>
+</html>

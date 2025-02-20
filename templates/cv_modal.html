@@ -1,0 +1,157 @@
+<div class="row">
+  <!-- Sidebar (Left) -->
+  <div class="col-md-4 sidebar">
+      <div class="mb-3">
+          <img src="/static/MYIMAGES/law4.jpg" class="img-fluid rounded-circle d-block mx-auto" width="100" alt="Profile Image">
+      </div>
+
+                              <div class="contact-box text-center">
+                                <h5 class="section-title">CONTACT DETAILS</h5>
+                                {% if cv_data_admin_view_all_cv %}
+                                    <p>{{ cv_data_admin_view_all_cv[0].email }}</p>
+                                    <p>{{ cv_data_admin_view_all_cv[0].contact_number }}</p>
+                                    <p>{{ cv_data_admin_view_all_cv[0].address }}</p>
+                                {% else %}
+                                    <p>No contact details available.</p>
+                                {% endif %}
+                            </div>
+
+                            <div class="education-box">
+                              <h5 class="section-title">EDUCATION</h5>
+                              {% if cv_data_admin_view_all_cv %}
+                                  <div>
+                                      <hr><hr>
+                                      {% for edu in cv_data_admin_view_all_cv if edu.Academic_Institution is defined %}
+                                          <p><strong>{{ edu.Academic_Institution }}</strong>
+                                              <br>Qualifications: <b>{{ edu.Qualification }}</b><br>
+                                              Field of Study: <em><b>{{ edu.Field_of_study }}</b></em><br>
+                                              Completion Status: <em><b>{{ edu.Completion_status }}</b></em><br>
+                                              Country of Study: <em><b>{{ edu.Country }}</b></em><br>
+                                              City of Study: <em><b>{{ edu.City }}</b></em><br>
+                                          </p><hr>
+                                      {% endfor %}
+                                      <hr><hr>
+                                  </div>
+                              {% else %}
+                                  <p>No education details found.</p>
+                              {% endif %}
+                          </div>
+
+      
+  </div>
+
+  <!-- Main Content (Right) -->
+  <div class="col-md-8 content">
+                  <div class="cv-header">
+                    {% if cv_data_admin_view_all_cv %}
+                        <h1 style="text-align:center;">
+                            {{ cv_data_admin_view_all_cv[0].firstname }}, {{ cv_data_admin_view_all_cv[0].lastname }}
+                        </h1>
+                    {% else %}
+                        <h1 style="text-align:center;">No Name Available</h1>
+                    {% endif %}
+
+                    {% set uploaded_docs = cv_data_admin_view_all_cv | selectattr("file_name", "defined") | list %}
+
+                    {% if uploaded_docs %}
+                        <ul style="text-align:center;">
+                            {% for doc in uploaded_docs %}
+                                <li>
+                                    <a href="{{ url_for('download_file', filename=doc.file_name) }}" download>
+                                        {{ doc.document_type }}
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p style="text-align:center;">No uploaded documents found.</p>
+                    {% endif %}
+                </div>
+
+      
+      
+      
+      
+      
+                      <div class="about-me">
+                        <h5 class="section-title">ABOUT ME</h5>
+                        <hr>
+                        {% if cv_data_admin_view_all_cv and cv_data_admin_view_all_cv[0].About_yourself %}
+                            <p style="text-align:justify;">{{ cv_data_admin_view_all_cv[0].About_yourself }}</p>
+                        {% else %}
+                            <p>No personal details available.</p>
+                        {% endif %}
+                    </div>
+
+                    <div class="experience">
+                      <h5 class="section-title">EXPERIENCE</h5>
+                      <hr>
+                      {% if cv_data_admin_view_all_cv %}
+                          <div>
+                              <hr>
+                              <table class="table">
+                                  <thead>
+                                      <tr>
+                                          <td>EMPLOYER</td>
+                                          <td>JOB TITLE</td>
+                                          <td>START DATE</td>
+                                          <td>END DATE</td>
+                                          <td>JOB DESCRIPTION</td>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                      {% for work in cv_data_admin_view_all_cv if work.employer_names is defined %}
+                                          <tr>
+                                              <td>{{ work.employer_names }}</td>
+                                              <td>{{ work.job_titles }}</td>
+                                              <td>{{ work.start_date }}</td>
+                                              <td>{{ work.end_date if work.end_date else "Present" }}</td>
+                                              <td>{{ work.job_description }}</td>
+                                          </tr>
+                                      {% endfor %}
+                                  </tbody>
+                              </table>
+                              <hr><hr>
+                          </div>
+                      {% else %}
+                          <p>No Work History details found.</p>
+                      {% endif %}
+                  </div>
+
+
+
+
+                  <div class="experience">
+                    <h5 class="section-title">SKILLS</h5>
+                    <hr>
+                    {% if cv_data_admin_view_all_cv %}
+                        <div>
+                            <hr>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <td>SKILLS</td>
+                                        <td>PROFICIENCY</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for skills in cv_data_admin_view_all_cv if skills.skills is defined %}
+                                        <tr>
+                                            <td>{{ skills.skills }}</td>
+                                            <td>{{ skills.proficiency }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                            <hr><hr>
+                        </div>
+                    {% else %}
+                        <p>No skills found.</p>
+                    {% endif %}
+                </div>
+ 
+ 
+ 
+ 
+    </div>
+</div>

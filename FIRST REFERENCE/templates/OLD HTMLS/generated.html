@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate CV | SSDD</title>
+    <link rel="stylesheet" href="/static/CSS/generated.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+</head>
+
+<body>
+    <div class="dashboard-container">
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            
+
+            <div class="graduate-icon"><img src="/static/images/logo_simplebbbbbbbbbbbbbb.png" alt=" " style=" width: 130px;">
+       
+       
+       
+       
+       
+        </div><br><br>
+        <ul>
+            <li><a href="{{ url_for('dashboardinformation') }}" class="nav-item"><i class="fa fa-home"></i> Home</a></li>
+
+
+            <li><a href="{{ url_for('dashboardPersonalInformation') }}" class="nav-item"><i class="fa fa-user"></i> Personal Info</a></li>
+
+            
+            <li><a href="{{ url_for('dashboardEducation') }}" class="nav-item"><i class="fa fa-graduation-cap"></i> Education</a></li>
+            <li><a href="{{ url_for('dashboardWorkHistory') }}" class="nav-item"><i class="fa fa-briefcase"></i> Work History</a></li>
+            <li><a href="{{ url_for('dashboardAttachment') }}" class="nav-item"><i class="fa fa-paperclip"></i> Attachments</a></li>
+            <li><a href="{{ url_for('dashboardGenerateCV') }}" class="nav-item"><i class="fa fa-file"></i> Generate CV</a></li>
+            <li>🔔 Notifications</li>
+            <li>🛠️ Help & Support</li> <br><br><br><br>
+            <button class="fixy">⚙️ Settings</button>
+            <form action="logout" method="GET, POST">
+                <button class="fix">🚪 Log Out</button><br>
+              </form>
+            <!-- <li><i>🆘</i> Help Services</li> -->
+            <!-- <li><i>🎓</i> Student Portal</li>
+            <li><i>📚</i> Courses</li>
+            <li><i>📝</i> Assignments</li> -->
+        </ul>
+      
+
+
+        <img src="/static/images/rb_2149331949.png" alt="" width="199px">
+    </div>
+
+        <!-- Content -->
+        <div class="content">
+
+            <!-- Top Bar -->
+            <div class="topbar">
+                <input type="search" placeholder="">
+                <!-- <div class="icon">🔍</div> -->
+
+
+            </div>
+
+            <!-- Welcome Box -->
+            <!-- <img src="./images/rb_2148892786.png" alt="" width="90px" height="100px">
+            <div class="welcome-box">
+                <br>Welcome, Natasia Mahure
+                <br>
+                <div class="date">September 15, 2024</div>
+            </div> -->
+            <div class="welcome-container">
+                <div class="image-container">
+                    <!-- <img src="./images/rb_2148892786.png" alt="Profile Picture" width="390px" height="190px"> -->
+                </div>
+               
+
+            </div>
+
+            <div class="cv-container">
+                <h1>Generated CV</h1>
+                <div class="cv-section">
+                    <h2>Personal Information</h2>
+                    <p><strong>Email:</strong> {{ personal_info.email }}</p>
+                    <p><strong>First Name:</strong> {{ personal_info.firstname }}</p>
+                    <p><strong>Last Name:</strong> {{ personal_info.lastname }}</p>
+                    <p><strong>Date of Birth:</strong> {{ personal_info.date_of_birth }}</p>
+                    <p><strong>ID Number:</strong> {{ personal_info.id_number }}</p>
+                    <p><strong>Citizenship:</strong> {{ personal_info.citizenship }}</p>
+                    <p><strong>Marital Status:</strong> {{ personal_info.marital_status }}</p>
+                    <p><strong>Contact Number:</strong> {{ personal_info.contact_number }}</p>
+                    <p><strong>Address:</strong> {{ personal_info.address }}</p>
+                    <p><strong>Gender:</strong> {{ personal_info.Gender }}</p>
+                    <p><strong>Disability:</strong> {{ personal_info.disability }}</p>
+
+                    <p><strong>Race Type:</strong> {{ personal_info.Race_type }}</p>
+                    <p><strong>Current Province:</strong> {{ personal_info.Province }}</p>
+                    <p><strong>Current City:</strong> {{ personal_info.City }}</p>
+                </div>
+            
+                <div class="cv-section">
+                    <h2>Education</h2>
+                    {% if education_details %}
+                    <ul>
+                        <li><strong>HIGH SCHOOL </strong></li>
+                        {% for edu in education_details %}
+                            <li>
+                                 {{ edu.high_school }} (Graduated: {{ edu.high_school_year }})
+                                <br>
+                                
+                            </li>
+
+
+                        {% endfor %}
+                    </ul>
+
+
+                    <ul>
+
+                        <li><strong>UNIVERSITY </strong></li>
+                        {% for edu in education_details %}
+                            <li>
+                                 {{ edu.university_name }} - {{ edu.university_degree }} (Graduated: {{ edu.university_year }})
+                               
+                                <br>
+                                
+                            </li>
+
+
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No education details found.</p>
+                {% endif %}
+                </div>
+            
+                <div class="cv-section">
+                    <h2>Work Histroy</h2>
+                   
+                    
+                    {% if work_history %}
+                        <ul id="cv-work-history">
+                            <li><strong>WORK HISTORY</strong> </li>
+                          
+                            {% for work in work_history %}
+                                <li>{{ work }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>No work history details found.</p>
+                    {% endif %}
+                </div>
+            
+                <div class="cv-section">
+                    <h2>Attachments</h2>
+                    <ul id="cv-attachments">
+                        {% if uploaded_documents %}
+                            {% for doc in uploaded_documents %}
+                                <li>
+                                    <strong>{{ doc.document_type }}:</strong>
+                                    <a href="{{ url_for('download_file', filename=doc.file_name) }}" download>{{ doc.file_name }}</a>
+                                </li>
+                            {% endfor %}
+                        {% else %}
+                            <p>No attachments found.</p>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+
+
+  
+
+
+</body>
+
+</html>

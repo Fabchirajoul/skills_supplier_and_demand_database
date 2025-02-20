@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learner | SSDD</title>
+    <link rel="stylesheet" href="/static/CSS/dasborad.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+ 
+</head>
+
+<body>
+    <div class="dashboard-container">
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            
+
+                <div class="graduate-icon"><img src="/static/images/logo_simplebbbbbbbbbbbbbb.png" alt=" " style=" width: 130px;">
+           
+           
+           
+           
+           
+            </div><br><br>
+            <ul>
+
+                <li><a href="{{ url_for('dashboardinformation') }}" class="nav-item"><i class="fa fa-home"></i> Home</a></li>
+
+                <li><a href="{{ url_for('dashboardPersonalInformation') }}" class="nav-item"><i class="fa fa-user"></i> Personal Info</a></li>
+
+                
+                <li><a href="{{ url_for('dashboardEducation') }}" class="nav-item"><i class="fa fa-graduation-cap"></i> Education</a></li>
+                <li><a href="{{ url_for('dashboardWorkHistory') }}" class="nav-item"><i class="fa fa-briefcase"></i> Work History</a></li>
+                <li><a href="{{ url_for('dashboardAttachment') }}" class="nav-item"><i class="fa fa-paperclip"></i> Attachments</a></li>
+                <li><a href="{{ url_for('dashboardGenerateCV') }}" class="nav-item"><i class="fa fa-file"></i> Generate CV</a></li>
+                <li>🔔 Notifications</li>
+                <li>🛠️ Help & Support</li> <br><br><br><br>
+                <button class="fixy">⚙️ Settings</button>
+                <form action="logout" method="GET, POST">
+                    <button class="fix">🚪 Log Out</button><br>
+                  </form>
+                <!-- <li><i>🆘</i> Help Services</li> -->
+                <!-- <li><i>🎓</i> Student Portal</li>
+                <li><i>📚</i> Courses</li>
+                <li><i>📝</i> Assignments</li> -->
+            </ul>
+          
+
+
+            <img src="/static/images/rb_2149331949.png" alt="" width="199px">
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+
+            <!-- Top Bar -->
+            <div class="topbar">
+                <input type="search" placeholder="Search...">
+                <!-- <div class="icon">🔍</div> -->
+
+
+            </div>
+
+            <!-- Welcome Box -->
+            <!-- <img src="./images/rb_2148892786.png" alt="" width="90px" height="100px">
+            <div class="welcome-box">
+                <br>Welcome, Natasia Mahure
+                <br>
+                <div class="date">September 15, 2024</div>
+            </div> -->
+            <div class="welcome-container">
+                <div class="image-container">
+                    <img src="/static/images/rb_2148892786.png" alt="Profile Picture" width="390px" height="190px">
+                    
+                    
+                   
+                
+                
+                
+                </div>
+                <div class="welcome-box">
+                    <p>WELCOME TO THE SSDD PORTAL</p>
+                    <div class="date">Are you a GRADUATE or STUDENT who is looking for workplace experience, work exposure, or
+                        work-integrated opportunities in the chemical sector?
+                        <br><span class="highlight">Register today!</span>
+                        <br>
+                    </div>
+                    
+                  
+
+
+
+                                                    {% with messages = get_flashed_messages(with_categories=true) %}
+                                {% if messages %}
+                                    <div>
+                                    {% for category, message in messages %}
+                                        <div class="alert alert-{{ category }}">{{ message }}</div>
+                                    {% endfor %}
+                                    </div>
+                                {% endif %}
+                                {% endwith %}
+
+
+
+
+                </div>
+
+            </div>
+
+
+
+            <div class="master"> <!-- Main Box with 6 Sub Boxes -->
+                
+                            <div class="flex-container">
+                                <div class="flex-box">
+                                    <div class="icon">
+
+
+                                        <img src="/static/images/chat 2.png" alt="Icon 1">
+                                        
+                                    </div>
+                                    <h1>Admin Feedback</h1>
+                                    <button>Learn More</button>
+                                </div>
+                                <div class="flex-box2">
+                                    <div class="icon">
+
+                                        <img src="/static/images/User.png" alt="Icon 1">
+                                    
+                                    </div>
+                                    <h1>Profile</h1>
+                                    <button>Learn More</button>
+                                </div>
+                                
+                            </div>
+            </div>
+
+
+        </div>
+
+
+
+    </div>
+
+
+
+</body>
+
+</html>

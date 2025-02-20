@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learner | SSDD</title>
+    <link rel="stylesheet" href="/static/CSS/dasborad.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+                <!-- Include Alpine.js library -->
+
+<script src="/static/js/code.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+
+ 
+</head>
+
+<body x-data="CHIETASSDDPHASE1">
+    <div class="dashboard-container">
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            
+
+                <div class="graduate-icon"><img src="/static/images/logo_simplebbbbbbbbbbbbbb.png" alt=" " style=" width: 130px;">
+           
+           
+           
+           
+           
+            </div><br><br>
+            <ul>
+
+                <li><a href="{" class="nav-item"><i class="fa fa-home"></i> Home</a></li>
+
+                <li><a href="" class="nav-item"><i class="fa fa-user"></i> Saved Candidates</a></li>
+                <li><a href="" class="nav-item"><i class="fa fa-graduation-cap"></i> 🛠️ Help & Support</a></li>
+                <li><a href="" class="nav-item"><i class="fa fa-briefcase"></i> ⚙️ Settings</a></li>
+                <li>🔔 Notifications</li>
+                <li></li> <br><br><br><br>
+                <button class="fixy"></button>
+                <form action="logout" method="GET, POST">
+                    <button class="fix">🚪 Log Out</button><br>
+                  </form>
+                <!-- <li><i>🆘</i> Help Services</li> -->
+                <!-- <li><i>🎓</i> Student Portal</li>
+                <li><i>📚</i> Courses</li>
+                <li><i>📝</i> Assignments</li> -->
+            </ul>
+          
+
+
+            <img src="/static/images/rb_2149331949.png" alt="" width="199px">
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+
+            <h2>CHIETA SUPPLY DATABASE </h2>
+
+            
+
+          
+           
+
+
+
+            <div class="master">
+                <div>
+                    <button class="filter-btn" @click="filter_container = !filter_container">Filter Options</button>
+                </div>
+
+                <form method="POST" action="/filter_applicants">
+                    <div class="filter-container" x-show="filter_container" x-transition>
+                        <div class="filter-form">
+                            <div class="filter-row">
+                                <div class="filter-item">
+                                    <label for="province">Filter by Province</label>
+                                    <input type="hidden" id="selected-province" name="province" value=""/>
+                                    <select id="province" name="province" onchange="document.getElementById('selected-province').value = this.value">
+                                        <option value="">--- Select Province ---</option>
+                                        {% for item in distinct_data.provinces_cities %}
+                                        <option value="{{ item.province }}">{{ item.province }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                
+                                <div class="filter-item">
+                                    <label for="city">Filter by City name</label>
+                                    <input type="hidden" id="selected-city" name="city" value=""/>
+                                    <select id="city" name="city" onchange="document.getElementById('selected-city').value = this.value">
+                                        <option value="">--- Select City ---</option>
+                                        {% for item in distinct_data.provinces_cities %}
+                                        <option value="{{ item.city }}">{{ item.city }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                
+                                <div class="filter-item">
+                                    <label for="qualification-type">Filter by Qualification Type</label>
+                                    <input type="hidden" id="selected-qualification" name="qualification_type" value=""/>
+                                    <select id="qualification-type" name="qualification_type" onchange="document.getElementById('selected-qualification').value = this.value">
+                                        <option value="">--- Select Qualification ---</option>
+                                        {% for qualification in distinct_data.qualification_types %}
+                                        <option value="{{ qualification }}">{{ qualification }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                
+                            <div class="filter-row">
+                                <div class="filter-item">
+                                    <label for="field-study">Filter by Field of Study</label>
+                                    <input type="hidden" id="selected-field-study" name="field_of_study" value=""/>
+                                    <select id="field-study" name="field_of_study" onchange="document.getElementById('selected-field-study').value = this.value">
+                                        <option value="">--- Select Field of Study ---</option>
+                                        {% for field in distinct_data.fields_of_study %}
+                                        <option value="{{ field }}">{{ field }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="filter-item">
+                                    <label for="disability">Disability</label>
+                                    <input type="hidden" id="selected-disability" name="disability" value=""/>
+                                    <select id="disability" name="disability" onchange="document.getElementById('selected-disability').value = this.value">
+                                        <option value="">--- Select Disability ---</option>
+                                        {% for disability in distinct_data.disability_types %}
+                                        <option value="{{ disability }}">{{ disability }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="filter-item">
+                                    <label for="race">Race</label>
+                                    <input type="hidden" id="selected-race" name="race" value=""/>
+                                    <select id="race" name="race" onchange="document.getElementById('selected-race').value = this.value">
+                                        <option value="">--- Select Race ---</option>
+                                        {% for race in distinct_data.race_types %}
+                                        <option value="{{ race }}">{{ race }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                
+                            <div class="filter-row">
+                                <div class="filter-item">
+                                    <label for="institute">Filter by Institute</label>
+                                    <input type="hidden" id="selected-institute" name="institute" value=""/>
+                                    <select id="institute" name="institute" onchange="document.getElementById('selected-institute').value = this.value">
+                                        <option value="">--- Select Institute ---</option>
+                                        {% for institution in distinct_data.institutions %}
+                                        <option value="{{ institution }}">{{ institution }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                
+                                <div class="filter-item">
+                                    <label for="placement-type">Filter by Placement Type</label>
+                                    <input type="hidden" id="selected-placement" name="placement_type" value=""/>
+                                    <select id="placement-type" name="placement_type" onchange="document.getElementById('selected-placement').value = this.value">
+                                        <option value="">--- Select Opportunities ---</option>
+                                        {% for placement in distinct_data.placement_types %}
+                                        <option value="{{ placement }}">{{ placement }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="filter-item">
+                                    <label>Filter by Gender</label>
+                                    <div class="gender-options">
+                                        <input type="radio" id="gender-male" name="gender" value="Male">
+                                        <label for="gender-male">Male</label>
+                                        <input type="radio" id="gender-female" name="gender" value="Female">
+                                        <label for="gender-female">Female</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="filter-actions">
+                                <button type="submit" class="filter-btn">Filter</button>
+                                <button type="reset" class="reset-btn">Reset</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                
+                
+
+
+            </div>
+
+
+
+            <div class="master"> <!-- Main Box with 6 Sub Boxes -->
+                
+                <div class="flex-container">
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>SELECT</th>
+                                <th>EMAIL</th>
+                                <th>NAME</th>
+                                <th>FIELD OF STUDY</th>
+                                <th>PHONE</th>
+                                <th>RACE</th>
+                                <th>GENDER</th>
+                                <th>PROFILE STATUS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if results and results|length > 0 %}
+                                {% for result in results %}
+                                    <tr>
+                                        <td data-label="SELECT">
+                                            <input type="checkbox" name="select-applicant" value="{{ result.email }}">
+                                        </td>
+                                        <td data-label="EMAIL"><a href="">{{ result.email }}</a></td>
+                                        <td data-label="NAME">{{ result.name }}</td>
+                                        <td data-label="FIELD OF STUDY">{{ result.field_of_study }}</td>
+                                        <td data-label="PHONE">{{ result.contact_number }}</td>
+                                        <td data-label="RACE">{{ result.race }}</td>
+                                        <td data-label="GENDER">{{ result.gender }}</td>
+                                        <td data-label="PROFILE STATUS">{{ result.profile_status }}</td>
+                                    </tr>
+                                {% endfor %}
+                            {% else %}
+                                <tr>
+                                    <td colspan="8" style="text-align: center;">No results found for your search.</td>
+                                </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                    
+
+                    <div class="flex-container">
+                        <!-- Save Selected Applicants Button -->
+                        <div>
+                            <button>
+                                SAVE SELECTED APPLICANTS
+                            </button>
+                        </div>
+                    </div>
+                  
+                   
+                </div>
+                <div class="navigation">
+                    <!-- Previous Button -->
+                    <button>PREVIOUS</button>
+                    
+                    <!-- Page Indicator -->
+                    <p>1 of n</p>
+                    
+                    <!-- Next Button -->
+                    <button>NEXT</button>
+                </div>
+
+               
+
+
+
+            
+                
+            </div>
+
+
+        </div>
+
+
+
+    </div>
+
+
+
+</body>
+
+</html>

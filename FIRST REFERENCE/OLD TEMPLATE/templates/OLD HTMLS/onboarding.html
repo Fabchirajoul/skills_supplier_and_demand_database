@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Onboarding | SSDD</title>
+    <link rel="stylesheet" href="/static/CSS/onboarding.css">
+</head>
+<body>
+    <div id="onboarding-modal" class="onboarding-modal">
+        <div class="onboarding-content">
+            <h2>Welcome to the CV Builder!</h2>
+            <p>Here’s how you can use this platform:</p>
+            <ol>
+                <li>Fill out your personal information in the Personal Info section.</li>
+                <li>Add your educational qualifications in the Education section.</li>
+                <li>Include your work experience in the Work History section.</li>
+                <li>Upload supporting documents like certificates and IDs in the Attachments section.</li>
+                <li>Once done, generate your complete CV in the Generate CV section.</li>
+            </ol>
+            <button id="close-onboarding">Got it!</button>
+        </div>
+    </div>
+    
+    <script>
+        // Add new attachment entry
+        document.getElementById('add-attachment').addEventListener('click', function () {
+            const newEntry = document.createElement('div');
+            newEntry.classList.add('attachment-entry');
+            newEntry.innerHTML = `
+                <h3>Additional Document</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="document-type">Document Type:</label>
+                        <select name="document-type[]" required>
+                            <option value="" disabled selected>Select Document Type</option>
+                            <option value="highschool-certificate">High School Certificate</option>
+                            <option value="degree">Degree</option>
+                            <option value="id-copy">ID Copy</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="document-upload">Upload File:</label>
+                        <input type="file" name="document-upload[]" required>
+                    </div>
+                </div>
+                <button type="button" class="delete-entry">Delete</button>
+            `;
+            document.getElementById('attachment-entries').appendChild(newEntry);
+        });
+    
+        // Delete attachment entry
+        document.getElementById('attachments-form').addEventListener('click', function (e) {
+            if (e.target.classList.contains('delete-entry')) {
+                e.target.parentElement.remove();
+            }
+        });
+    
+        // Onboarding modal functionality
+        document.getElementById('close-onboarding').addEventListener('click', function () {
+            document.getElementById('onboarding-modal').style.display = 'none';
+        });
+    
+        window.onload = function () {
+            document.getElementById('onboarding-modal').style.display = 'block';
+        };
+    </script>
+    
+</body>
+</html>
